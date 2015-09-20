@@ -33,3 +33,10 @@ public class Part1 {
 		System.out.println(sb);
 	}
 }
+///*
+Here "is" a line "filled with" strings.
+I "like \" to have strings" with "escaped \"\\\" characters"\" hello
+"" These "test" files" are fun" to make but "not"really.
+\"\"\"\"
+"They're" going to blow!
+//*/
