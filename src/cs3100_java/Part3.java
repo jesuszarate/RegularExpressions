@@ -20,19 +20,24 @@ public class Part3 {
 	{
 		Scanner input = new Scanner(System.in);
 
-		Pattern p = Pattern.compile("\\b\\(\\d\\d\\d\\)\\s?\\d\\d\\d\\-\\d\\d\\d\\d\\b");
+		//Pattern p = Pattern.compile("\\b\\(\\d\\d\\d\\)\\s?\\d\\d\\d\\-\\d\\d\\d\\d\\b");
+		Pattern p = Pattern.compile("\\s\\(\\d\\d\\d\\)\\s?\\d\\d\\d\\-\\d\\d\\d\\d\\b");
+		
 		int count = 0;
-
-		while(input.hasNextLine()){	
-			String line = input.nextLine();
+		
+		String doc = "";
+		while(input.hasNextLine())
+		{
+			doc += input.nextLine()+"\n";
+		}
+					
+		Matcher m = p.matcher(doc);
 			
-			Matcher m = p.matcher(line);
-
-			while (m.find())
-			{
-				count++;
-			}
-		}		
+		while (m.find())
+		{
+			count++;
+		}	
+		
 		System.out.println(count);
 	}
 }
