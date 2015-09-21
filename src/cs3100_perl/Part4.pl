@@ -2,14 +2,15 @@ while(<STDIN>){
 	$input .= $_; 	
 }
 
-$output = "";
-#while($input =~ m!((").+? (?<!\\)")!g) 
-while($input =~ m@(".*?(?<!\\)")@g) #(\.)*
-#while($input =~ m@("(\.)*.*?(\.)*(?<!\\)")@g)
-{
-	$output .= $1 . "\n";
+while($input =~ m@("(\.)*.*?(\.)*(?<!\\)")|("(\.)*.*?(\.)*(?<=\\\\)")@g)
+{		
+	if(defined $1)
+	{
+		$output .= $1 . "\n";
+	}
+	else{
+		$output .= $4 . "\n";
+	}
 }
 
-$output .= "end";
 print $output;
-
