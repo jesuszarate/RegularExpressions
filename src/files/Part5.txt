@@ -18,3 +18,10 @@ the <are> correct <you> answer <doing>
 <this will 
 span "two lines>print me<this will 
 span two lines "hello">
+
+
+<hello> This <world "!"> is <how>
+the <are> correct <you> answer <doing>
+<I will 
+span \"two lines>print me<this will 
+span two lines "hello \" >">
