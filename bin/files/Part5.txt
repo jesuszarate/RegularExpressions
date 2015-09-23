@@ -1,4 +1,4 @@
-<hello> This <world> is <how>
+<hello> This <world "!"> is <how>
 the <are> correct <you> answer <doing>
 <this will 
 span two lines>print me<this will 
@@ -6,3 +6,27 @@ span two lines "hello">
 <I should still show up <I should not show up>
 should show up
 <I should not show up <I should not show up either>>
+
+$result = "";
+while($input =~ m@((\<)((?!<).|\n)*?(\>))@g)
+{
+	if($input =~ m@("(\.)*.*?(\.)*(?<!\\)")|("(\.)*.*?(\.)*(?<=\\\\)")@g)
+	{
+		$input =~ s@((\<)((?!<).|\n)*?(\>))@@g;
+		$result .= $1;
+	}
+}
+$result += "\nend";
+print $result;
+
+
+<this will 
+span two lines> here <this will 
+span two "lines >" hello>
+
+
+<hello> This <world "!"> is <how>
+the <are> correct <you> answer <doing>
+<this will 
+span "two lines>print me<this will 
+span two lines "hello">
