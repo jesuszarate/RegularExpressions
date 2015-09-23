@@ -5,14 +5,12 @@ while(<STDIN>)
 $HTML = "((\<)((?!\")(?!<).|\n)*?(\>))";
 $htmls = "((\<)((?!<).|\n)*?(\>))";
 #$quoted = "(\"(\.)*.*?(\.)*(?<!\\)\")|(\"(\.)*.*?(\.)*(?<=\\\\)\"))";
-#$notHTML = "((?!<)(.|\n)(?!>))*";
+
+#$quoteHtml = "(<((.|\n)*?(" . $quoted . ").*?)>)";
+
 
 $input =~ s@$HTML@@g; 
-#$input =~ s@$notHTML@@g; 
 
-
-#while($input =~ m@(\"(\.)*.*?(\.)*(?<!\\)\")|(\"(\.)*.*?(\.)*(?<=\\\\)\")@g)
-#{}
 #$input =~ s@((\<)((?!")(?!<).|\n)*?(\>))@@gi; #Matches the case where no unquoted < characters should appear inside a tag
 										 # but fails when there is two nested like: < hello <world>>
 										 
@@ -22,6 +20,8 @@ while($input =~ m@$htmls@g)
 	#print $1;	
 }
 
-$input =~ s@(<((.|\n)*?(".*").*?)>)@@g;
+
+#$input =~ s@$quoteHtml@@g;
+#$input =~ s@(<((.|\n)*?(".*").*?)>)@@g; # quotehtml before quoted
 
 print $input;

@@ -5,7 +5,9 @@ while(<STDIN>)
 $HTML = "((\<)((?!\")(?!<).|\n)*?(\>))";
 $htmls = "((\<)((?!<).|\n)*?(\>))";
 #$quoted = "(\"(\.)*.*?(\.)*(?<!\\)\")|(\"(\.)*.*?(\.)*(?<=\\\\)\"))";
-#$notHTML = "((?!<)(.|\n)(?!>))*";
+
+#$quoteHtml = "(<((.|\n)*?(" . $quoted . ").*?)>)";
+
 
 $input =~ s@$HTML@@g; 
 
@@ -18,6 +20,8 @@ while($input =~ m@$htmls@g)
 	#print $1;	
 }
 
-$input =~ s@(<((.|\n)*?(".*").*?)>)@@g;
+
+#$input =~ s@$quoteHtml@@g;
+#$input =~ s@(<((.|\n)*?(".*").*?)>)@@g; # quotehtml before quoted
 
 print $input;

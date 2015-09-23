@@ -7,18 +7,6 @@ span two lines "hello">
 should show up
 <I should not show up <I should not show up either>>
 
-$result = "";
-while($input =~ m@((\<)((?!<).|\n)*?(\>))@g)
-{
-	if($input =~ m@("(\.)*.*?(\.)*(?<!\\)")|("(\.)*.*?(\.)*(?<=\\\\)")@g)
-	{
-		$input =~ s@((\<)((?!<).|\n)*?(\>))@@g;
-		$result .= $1;
-	}
-}
-$result += "\nend";
-print $result;
-
 
 <this will 
 span two lines> here <this will 
