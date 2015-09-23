@@ -2,27 +2,23 @@ while(<STDIN>)
 {
 	$input .= $_;
 }
-
-#$input =~ s@\<(.|\n)*?\>@@gi; 
-#$input =~ s@((\<)((?!<).|\n)*?(\>))@@gi; #Matches the case where no unquoted < characters should appear inside a tag
-										 # but fails when there is two nested like: < hello <world>>
-#$result = "";
-#while($input =~ m@((\<)((?!<).|\n)*?(\>))@g)
-#{
-
-#	if($input =~ m@("(\.)*.*?(\.)*(?<!\\)")|("(\.)*.*?(\.)*(?<=\\\\)")@g)
-#	{
-#		$input =~ s@((\<)((?!<).|\n)*?(\>))@@g;
-#		$result .= $1;
-#	}
-#}
+$input1 = $input;
 
 $HTML = "((\<)((?!\")(?!<).|\n)*?(\>))";
-$input =~ s@$HTML@@g; 
+$input =~ s@$HTML@@g;
+$input1 =~ s@$HTML@@g;
+#print $input;
+
+#$quoted = "((\"(\.)*.*?(\.)*(?<!\\)\"))";
+
+$input =~ s@((\<)(((?!<).|\n)*?)(("(\.)*.*?(\.)*(?<!\\)")|("(\.)*.*?(\.)*(?<=\\\\)"))(((?!<).|\n)*?)(\>))@@g;
+#$input =~ s@((\<)(((?!<).|\n)*?)("(\.)*.*?(\.)*(?<!\\)")(((?!<).|\n)*?)(\>))@@g;
 print $input;
 
-$input =~ s@((\<)(((?!<).|\n)*?)\"(((?!<).|\n)*?)\"(((?!<).|\n)*?)(\>))@@g;
-print "\n\n\n\n\n" . $input;
+#("(\.)*.*?(\.)*(?<!\\)")
+#("(\.)*.*?(\.)*(?<=\\\\)")
 
-#$result += $input;
-#print $result;
+$input1 =~ s@((\<)(((?!<).|\n)*?)\"(((?!<).|\n)*?)\"(((?!<).|\n)*?)(\>))@@g;
+print "\n\n\n" . $input1;
+
+#print $input;
